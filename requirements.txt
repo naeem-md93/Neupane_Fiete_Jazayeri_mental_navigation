@@ -1,0 +1,14 @@
+numpy
+pandas
+matplotlib
+seaborn
+scipy
+imageio
+openpyxl
+ipywidgets
+ipykernel
+notebook
+tqdm
+h5py
+mat73
+pymatreader
