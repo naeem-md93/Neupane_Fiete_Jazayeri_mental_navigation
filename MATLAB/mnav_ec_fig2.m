@@ -1,10 +1,10 @@
 % Neupane, Fiete, Jazayeri 2024 mental navigation paper 
 % Fig 2 plot reproduction
 
-%Download preprocessed Fig2 data from this link into your local folder:
+%Download preprocessed Fig2 data from this link into your local folder (`Fig2` directory):
 % https://www.dropbox.com/scl/fo/2y2cfmb4txb14ue6ltjto/AFmH8za6FRBwt11Vr4YWHoA?rlkey=3wq69gdselb50py6fchltvwia&dl=0
 
-%Download preprocessed tensor data from this link into your local folder:
+%Download preprocessed tensor data from this link into your local folder (`EC` directory):
 % https://www.dropbox.com/scl/fo/nw6zals6ayf0w7vszysbl/h?rlkey=e4c8ee6rr9iv7k218ybym6e1b&dl=0
 
 %for questions or further data/code access contact sujayanyaupane@gmail.com

@@ -1,6 +1,6 @@
 % Neupane, Fiete, Jazayeri 2024 mental navigation paper 
 % Fig 1 plot reproduction
-%Download preprocessed data from this link into your local folder:
+%Download preprocessed data from this link into your local folder (`Fig1` directory):
 % https://www.dropbox.com/scl/fo/4fn7pq3e51waklclon9cp/AHJT9QgsHVa0bPKLtxxtY0c?rlkey=jrhi0p7mltze1axt7x6aqhvdj&dl=0
 %for questions or further data/code access contact sujayanyaupane@gmail.com
 %=============================================================================

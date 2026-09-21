@@ -1,13 +1,13 @@
 % Neupane, Fiete, Jazayeri 2024 mental navigation paper 
 % Fig 3 plot reproduction
 
-%Download preprocessed Fig3 data from this link into your local folder:
+%Download preprocessed Fig3 data from this link into your local folder (`Fig3` directory):
 % https://www.dropbox.com/scl/fo/qfupier0tdh3sp65obpwj/AM0Qqc_8nZtjxpLqxJj3TWQ?rlkey=aly1gdfw8srj7sefzcp53a89r&dl=0
 
-%Download preprocessed tensor data from this link into your local folder:
+%Download preprocessed tensor data from this link into your local folder (`EC` directory):
 % https://www.dropbox.com/scl/fo/nw6zals6ayf0w7vszysbl/h?rlkey=e4c8ee6rr9iv7k218ybym6e1b&dl=0
 
-%Download CAN model data here (this link is the same as in mnav_ec_fig4.m)
+%Download CAN model data here (this link is the same as in mnav_ec_fig4.m) (`data` directory):
 % https://www.dropbox.com/scl/fo/vu8cl45wmiixo4gxnuaug/AMFPqtj73cZPCzOnQn9bTZc?rlkey=irxfazoibvdk1jc3cui0neshg&dl=0
 %for questions or further data/code access contact sujayanyaupane@gmail.com
 %=============================================================================
