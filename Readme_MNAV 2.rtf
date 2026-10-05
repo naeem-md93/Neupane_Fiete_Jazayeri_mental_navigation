@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red251\green2\blue7;\red253\green128\blue8;\red0\green0\blue0;
+\red0\green0\blue255;\red14\green0\blue255;\red170\green4\blue249;}
+{\*\expandedcolortbl;;\cssrgb\c100000\c14913\c0;\cssrgb\c100000\c57637\c0;\cssrgb\c0\c0\c0;
+\cssrgb\c1680\c19835\c100000;\csgenericrgb\c5490\c0\c100000;\csgenericrgb\c66667\c1569\c97647;}
+\margl1440\margr1440\vieww30040\viewh15700\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ====Readme file for Mental navigation data======\
+contact Sujaya Neupane for questions: sneupane@mit.edu; sujayanyaupane@gmail.com\
+\
+Trial structure: \
+\
+BASELINE\cf2 ======\cf0 Fix_on \cf3 \'97 200ms \'97\cf0  Start_landmark_ON (fixation requirement off)\cf3 \'97 400ms \'97\cf0 Target_landmark_ON\cf2 ==400 to1400ms delay==\cf0 go_cue_ON\cf2 ==reaction_time==\cf4 Joystick_onset\cf2 ==650ms to 3200ms mental navigation==\cf4 Joystick_offset\'97reward+visual feedback of current landmark+end trial\cf0 \
+\
+\
+Data structure: neuron x time x trial 	[time: 10 seconds for each trial -500ms to 9500ms from start_landmark onset]\
+data variables: \
+\
+neur_tensor_trialon:  1ms binned firing rate\
+lfp_tensor_trialon:     raw LFP sampled at 1khz\
+\
+trialon: 		binning parameters as follows\
+\
+\
+         bef: 0.5000\
+         aft: 9.5000\
+    binwidth: .001\
+       edges: [1\'d79999 double]\
+\
+\
+trial condition labels in cond_matrix: trial x condition_labels\
+12 condition labels: \
+\cf4       \{'ta'            \} \'97> true temporal distance between start and target landmark (seconds)\
+      \{'tp'            \} \'97> animals\'92 produced temporal distance between start and target landmark (seconds)\
+     \{'curr'          \} \'97> start landmark index (1 to 6)\
+    \{'target'        \} \'97> target landmark index (1 to 6)\cf5 \
+\cf0 \
+       \{'rt'            \} \'97> animals\'92 reaction time after the go cue (seconds)\
+    \{'delay'         \} \'97> variable delay from target image presentation and go cue (0.4s to 1.4s from an exponential distribution)\
+\
+   \{'trial_type'    \} \'97> drift and sequence visible (value=1), drift visible but sequence occluded (value=2), fully occluded mental navigation (value=3)\
+    \{'seqq'          \} \'97> landmark sequence identity (1,2 or 3): seq1 and seq2: same speed=sp; seq3: slower speed 1.5*sp \
+\
+     \{'succ'          \} \'97> successful trial (1 or 0) irrespective of # of attempts \
+    \{'attempt'       \}\'97> number of attempts to finish a trial(1 or 2)\
+\
+ \{'numrepeat'     \}\'97> # of times a given landmark pair trial was consecutively repeated \
+\{'validtrials_mm\'92\}\'97> valid trial estimated by fitting behavior (tp distribution) to a mixture model with a gaussian distribution and a uniform distribution (for lapse trials)\
+\
+Matlab code to get mental navigation trials for all the 30 conditions (6 choose 2): \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs20 \cf0 load(filename)
+\f0\fs24 \
+
+\f1\fs20  \cf6 for\cf0  ii=1:length(cond_label)
+\fs24 \
+
+\fs20     eval([\cf7 'params.'\cf0  cond_label\{ii\} \cf7 '=cond_matrix(:,strcmp(cond_label, cond_label\{ii\} ));'\cf0 ]);
+\fs24 \
+
+\fs20 \cf6 end\cf0  
+\f0\fs24 \
+
+\f1\fs20 trials		 = find(params.trial_type==3 & params.seqq<3 & params.attempt==1);
+\fs24 \
+
+\fs20 mental_trials_data = neur_tensor_trialon(:,:,trials);
+\fs24 \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \
+}
