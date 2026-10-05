@@ -28,8 +28,8 @@ cp.num_generalizationtest_sessions=6; %number of generalization test sessions to
 
 savefig=0;
 data_folder='/media/naeem_md93/DRIVE/MNAV/Fig1/';
-tatplm=get_tatp(data_folder,cp,savefig,'amadeus');
-tatplm=get_tatp(data_folder,cp,savefig,'mahler');
+% tatplm=get_tatp(data_folder,cp,savefig,'amadeus');
+% tatplm=get_tatp(data_folder,cp,savefig,'mahler');
 
 %% get generalization plots and distribution of regression slopes across all sessions
 
@@ -37,8 +37,8 @@ savefig=0;
 
 % seq=1;
 % get_generalization_plots('mahler_exp',mtt_folder,cp,savefig,seq)
-seq=2;
-get_generalization_plots('mahler_exp',cp,savefig,seq)
+% seq=2;
+% get_generalization_plots('mahler_exp',cp,savefig,seq)
 
 
 seq=1;
@@ -53,10 +53,10 @@ get_generalization_plots('amadeus_exp',cp,savefig,seq)
 
 function get_generalization_plots(filename,cp,savefig,sequence)
 plotgen=1;
-cd([cp.savedir_ '/Fig1'])
+cd('/media/naeem_md93/DRIVE/MNAV/Fig1')
 load( filename)
 
-if exist(['fig1ce_data_' filename(1:end-4) '_seq' num2str(sequence) '.mat'])
+if exist(['123___fig1ce_data_' filename(1:end-4) '_seq' num2str(sequence) '.mat'])
     load (['fig1ce_data_' filename(1:end-4) '_seq' num2str(sequence) '.mat'])
 else
 
@@ -67,11 +67,11 @@ else
     %data and I can share them. 
     switch filename(1)
         case 'a'
-            mttfolder='/Users/Sujay/Dropbox (MIT)/mtt_data/';
+            mttfolder='/media/naeem_md93/DRIVE/MNAV/EC/';
             if sequence==cp.generalization_seq_a, plotgen=1;end
             eval(['expid=[' filename(1) '_expid_seq' num2str(sequence) ';' filename(1) '_expid_seq12;' filename(1) '_expid_seq4];']);
         case 'm'
-            mttfolder='/Users/Sujay/Dropbox (MIT)/mtt_data_mahler/';
+            mttfolder='/media/naeem_md93/DRIVE/MNAV/EC/';
             if sequence==cp.generalization_seq_m, plotgen=1;end
             eval(['expid=[' filename(1) '_expid_seq' num2str(sequence) ';' filename(1) '_expid_seq12;' filename(1) '_expid_seq4;' filename(1) '_expid_seq124];']);
     end
@@ -84,18 +84,29 @@ else
     for exp =  1:size(expid,1)
         expid(exp,:)
         if  filename(1)=='m'
-            cd ([mttfolder '/' expid(exp,:) '.mwk']);
-            load ([expid(exp,:) '.mat']);
+            if exist([mttfolder '/' expid(exp,:) '.mwk'])
+                cd ([mttfolder '/' expid(exp,:) '.mwk']);
+                load ([expid(exp,:) '.mat']);
+            else
+                disp(expid(exp, :) + " Not exist!")
+                continue
+            end
+
         else
             try
-                cd ([mttfolder '/' expid(exp,:) '.mwk']);
                 try
-                    load (['concat_' expid(exp,1:end-2) '.mat']);
+                    cd ([mttfolder expid(exp,:) '.mwk']);
+                    try
+                        load (['concat_' expid(exp,1:end-2) '.mat']);
+                    catch
+                        load ([expid(exp,:) '.mat']);end
                 catch
-                    load ([expid(exp,:) '.mat']);end
+                    cd ([mttfolder expid(exp,1:end-2)]);
+                    load (['concat_' expid(exp,1:end-2) '.mat'])
+                end
             catch
-                cd ([mttfolder '/' expid(exp,1:end-2)]);
-                load (['concat_' expid(exp,1:end-2) '.mat'])
+                disp([expid(exp, :) 'not found']);
+                continue;
             end
         end
 
